@@ -1,0 +1,73 @@
+//初始加載頁面時
+$(document).ready(function(){
+ //為獲取單個值的按鈕註冊鼠標單擊事件
+ $("#getMessage").click(function(){
+  $.getJSON("jsontest!returnMessage.action",function(data){
+   //通過.操作符可以從data.message中獲得Action中message的值
+   $("#message").html("<font color='red'>"+data.message+"</font>");
+  });
+ });
+ //為獲取UserInfo對象按鈕添加鼠標單擊事件
+ $("#getUserInfo").click(function(){
+  $.getJSON("jsontest!returnUserInfo.action",function(data){
+   //清空顯示層中的數據
+   $("#message").html("");
+   //為顯示層添加獲取到的數據
+   //獲取對象的數據用data.userInfo.屬性
+   $("#message").append("<div><font color='red'>用戶ID："+data.userInfo.userId+"</font></div>")
+          .append("<div><font color='red'>用戶名："+data.userInfo.userName+"</font></div>")
+          .append("<div><font color='red'>密碼："+data.userInfo.password+"</font></div>")
+  });
+ });
+ //為獲取List對象按鈕添加鼠標單擊事件
+ $("#getList").click(function(){
+  $.getJSON("jsontest!returnList.action",function(data){
+   //清空顯示層中的數據
+   $("#message").html("");
+   //使用jQuery中的each(data,function(){});函數
+   //從data.userInfosList獲取UserInfo對象放入value之中
+   $.each(data.userInfosList,function(i,value){
+    $("#message").append("<div>第"+(i+1)+"個用戶：</div>")
+       .append("<div><font color='red'>用戶ID："+value.userId+"</font></div>")
+          .append("<div><font color='red'>用戶名："+value.userName+"</font></div>")
+          .append("<div><font color='red'>密碼："+value.password+"</font></div>");
+   });
+  });
+ });
+ //為獲取Map對象按鈕添加鼠標單擊事件
+ $("#getMap").click(function(){
+  $.getJSON("jsontest!returnMap.action",function(data){
+   //清空顯示層中的數據
+   $("#message").html("");
+   //使用jQuery中的each(data,function(){});函數
+   //從data.userInfosList獲取UserInfo對象放入value之中
+   //key值為Map的鍵值
+   $.each(data.userInfosMap,function(key,value){
+    $("#message").append("<div><font color='red'>用戶ID："+value.userId+"</font></div>")
+          .append("<div><font color='red'>用戶名："+value.userName+"</font></div>")
+          .append("<div><font color='red'>密碼："+value.password+"</font></div>");
+   });
+  });
+ });
+ //向服務器發送表達數據
+ $("#regRe").click(function(){
+  //把表單的數據進行序列化
+  var params = $("form").serialize();
+  //使用jQuery中的$.ajax({});Ajax方法
+  $.ajax({
+   url:"jsontest!gainUserInfo.action",
+   type:"POST",
+   data:params,
+   dataType:"json",
+   success:function(data){
+    //清空顯示層中的數據
+   $("#message").html("");
+   //為顯示層添加獲取到的數據
+   //獲取對象的數據用data.userInfo.屬性
+   $("#message").append("<div><font color='red'>用戶ID："+data.userInfo.userId+"</font></div>")
+          .append("<div><font color='red'>用戶名："+data.userInfo.userName+"</font></div>")
+          .append("<div><font color='red'>密碼："+data.userInfo.password+"</font></div>")
+   }
+  });
+ });
+});
