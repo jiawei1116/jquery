@@ -1,0 +1,26 @@
+$.ajax({
+    type: "POST",
+    url: "userData.jsp",
+    data: {type: "i", txtUserId: $("#txtUserId").val(), txtUserName: $("#txtUserName").val()}, 
+	//dataType: "text",
+	//dataType: "html",
+	//dataType: "json",
+	cache: false,
+	success: function(response){
+	  var data = $.parseJSON(response);
+	  alert(data.exeStatus);
+	  alert(data.msg);
+	},
+    error: function(xhr, ajaxOptions, thrownError)
+    { 
+      alert(xhr.status); 
+      alert(thrownError.Error); 
+    }
+
+	
+  });
+  
+  
+  
+http://www.w3school.com.cn/jquery/ajax_ajax.asp
+  
