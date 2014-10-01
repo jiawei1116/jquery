@@ -1,3 +1,5 @@
+http://zyw090111.iteye.com/blog/621302#
+
 //初始加載頁面時
 $(document).ready(function(){
  //為獲取單個值的按鈕註冊鼠標單擊事件
