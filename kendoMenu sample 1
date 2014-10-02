@@ -1,0 +1,18 @@
+$("#menu1").kendoMenu({
+		dataSource:[{
+	        text: "Item 1"
+	        ,value:"test"
+	        //,cssClass: "myClass"                       // Add custom CSS class to the item, optional, added 2012 Q3 SP1.
+	        ,url: "http://www.telerik.com"                // Link URL if navigation is needed, optional.
+	    	, template:_template
+	    	
+		}
+		]
+	});*/	
+	/*
+	var $ul = $("ul").children();
+	var $ul = $("ul#menu1").children();
+	//alert( $ul.length );
+	for(var i=0;i< $ul.length;i++){
+	    //alert( $ul[i].innerHTML );
+	}
