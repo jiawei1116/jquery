@@ -1,4 +1,6 @@
-Array.prototype.contains = function(a){ return this.indexOf(a) != -1 };
+/* 新刪改查權限控管 */
+function controlAuth(){
+	Array.prototype.contains = function(a){ return this.indexOf(a) != -1 };
 	//step1. 取出該角色可用的權限功能
 	var funcIdList = [
 	<c:forEach var="vo" items="${userVO.functionVOList}" varStatus="varStatus">
@@ -23,3 +25,4 @@ Array.prototype.contains = function(a){ return this.indexOf(a) != -1 };
     if(!funcIdList.contains(updFuncId)){
       	$('.editBtn').hide();
     }
+}
