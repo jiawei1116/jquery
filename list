@@ -1,0 +1,25 @@
+Array.prototype.contains = function(a){ return this.indexOf(a) != -1 };
+	//step1. 取出該角色可用的權限功能
+	var funcIdList = [
+	<c:forEach var="vo" items="${userVO.functionVOList}" varStatus="varStatus">
+ 		<c:forEach var="func" items="${vo.subFunction}" varStatus="varStatus">
+	   		'${func.functionNo}'
+	   		<c:if test="${!varStatus.last}">,</c:if>
+	 	</c:forEach>
+	 	 <c:if test="${!varStatus.last}">,</c:if>
+	</c:forEach>];    
+	
+	//step2. 移除不足的權限
+    $("div[class*=Content]").each(function(){
+          if(!funcIdList.contains($(this).attr("funcId"))){
+              $(this).remove();
+           }
+    });
+        
+    /* 若無法在屬性上加入funcId，則須另外以jQuery控制權限*/
+    if(!funcIdList.contains(delFuncId)){
+      	$('.delBtn').hide();
+    }
+    if(!funcIdList.contains(updFuncId)){
+      	$('.editBtn').hide();
+    }
