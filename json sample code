@@ -1,0 +1,12 @@
+/**/
+            	var users=[];
+            	users[0] = {};
+            	users[0].age="23";
+            	users[0].sex="男";
+            	
+            	var user={};
+            	user.age="23";
+            	user.sex="男";
+            	var jsonDataObj = JSON.stringify(user)
+//            	var jsonDataObj = '[{"age":"24","sex":"男"}]';
+            	console.log("jsonData:" +jsonDataObj);
